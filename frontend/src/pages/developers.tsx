@@ -3,10 +3,9 @@ import { FC } from 'react';
 import Head from 'next/head';
 
 import Footer from '../components/Footer/Footer';
-import Image from 'next/image';
 
-const Me = '/assets/profile-picture.png';
-const Sch = '/assets/SMK_TELKOM_MLG.png';
+const Me = 'https://nuflakbrr.vercel.app/static/images/profile-picture.png';
+const Sch = 'https://nuflakbrr.vercel.app/static/images/SMK_TELKOM_MLG.png';
 
 const Developers: FC = () => {
   return (
@@ -21,7 +20,7 @@ const Developers: FC = () => {
             <div className="flex flex-wrap px-10">
               <div className="w-full px-4 lg:w-1/2">
                 <div>
-                  <Image
+                  <img
                     src={Me}
                     alt="Naufal Akbar Nugroho"
                     className="mx-auto max-w-full"
@@ -72,7 +71,7 @@ const Developers: FC = () => {
           <div className="container">
             <div className="flex flex-wrap items-center px-10">
               <div className="w-full px-4 lg:w-1/2">
-                <Image
+                <img
                   src={Sch}
                   alt="SMK TELKOM MALANG"
                   className="mx-auto max-w-full rounded-xl object-cover object-center"
