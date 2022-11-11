@@ -12,11 +12,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport' content='width=device-width, initial-scale=1" />
         <meta name="theme-color' content='#000000" />
-        <link
-          rel="shortcut icon"
-          href="/assets/favicon.png"
-          type="image/x-icon"
-        />
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
       </Head>
 
       <Navbar />
