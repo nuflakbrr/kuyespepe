@@ -1,10 +1,10 @@
 import { FC, useState } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
-import axios from 'axios';
 
 import Navbar from '../../components/Navbar/Navbar';
 import Footer from '../../components/Footer/Footer';
+import axios from '../../config/axios';
 
 const LoginOfficer: FC = () => {
   const router = useRouter();
@@ -27,10 +27,9 @@ const LoginOfficer: FC = () => {
     e.preventDefault();
 
     const sendData = { username, password };
-    const url = 'http://localhost:8000/spp/petugas/petugas';
 
     axios
-      .post(url, sendData)
+      .post('/petugas/petugas', sendData)
       .then((res) => {
         setLoggedSuccess(res.data.logged);
         setLoggedFailed(!res.data.logged);
