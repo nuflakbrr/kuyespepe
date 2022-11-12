@@ -215,7 +215,7 @@ const SidebarAdmin: FC = () => {
           <span className="text-sky-500">Kuy</span>Espepe
         </h1>
       </div>
-      <div className="fixed bottom-20 right-6 md:hidden">
+      <div className="fixed bottom-16 right-6 md:hidden">
         <ThemesSwitch />
       </div>
     </>
