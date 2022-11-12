@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 import axios from 'axios';
 
+import Navbar from '../../components/Navbar/Navbar';
 import Footer from '../../components/Footer/Footer';
 
 const LoginAdmin: FC = () => {
@@ -52,6 +53,8 @@ const LoginAdmin: FC = () => {
       <Head>
         <title>Masuk Admin - KuyEspepe</title>
       </Head>
+
+      <Navbar />
 
       <main className="bg-white dark:bg-gray-900">
         <div className="py-20">

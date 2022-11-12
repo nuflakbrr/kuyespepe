@@ -2,6 +2,7 @@
 import { FC } from 'react';
 import Head from 'next/head';
 
+import Navbar from '../components/Navbar/Navbar';
 import Footer from '../components/Footer/Footer';
 
 const Me = 'https://nuflakbrr.vercel.app/static/images/profile-picture.png';
@@ -13,6 +14,8 @@ const Developers: FC = () => {
       <Head>
         <title>Pengembang Layanan - KuyEspepe</title>
       </Head>
+
+      <Navbar />
 
       <main className="bg-white dark:bg-gray-900 py-20">
         <section className="pt-10">

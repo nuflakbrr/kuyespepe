@@ -2,6 +2,7 @@ import { FC } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 
+import Navbar from '../../Navbar/Navbar';
 import Footer from '../../Footer/Footer';
 
 const ContainersHome: FC = () => {
@@ -25,6 +26,8 @@ const ContainersHome: FC = () => {
       <Head>
         <title>Masuk - KuyEspepe</title>
       </Head>
+
+      <Navbar />
 
       <main className="bg-white dark:bg-gray-900">
         <div className="py-20">
