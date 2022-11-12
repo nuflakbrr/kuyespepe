@@ -14,13 +14,15 @@ const ContainersDashboardStudent: FC = () => {
 
       <SidebarStudent />
 
-      <section className="bg-gray-900 md:ml-64 min-h-screen">
+      <section className="bg-white dark:bg-gray-900 md:ml-64 min-h-screen">
         <div className="container">
           <div className="flex flex-wrap">
             <div className="w-full p-10">
-              <h2 className="text-2xl font-semibold text-white">Dashboard</h2>
+              <h2 className="text-2xl font-semibold text-black dark:text-white">
+                Dashboard
+              </h2>
               <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 py-5 gap-4">
-                <div className="bg-sky-500 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-white text-white font-medium group">
+                <div className="bg-sky-500 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-slate-100 dark:border-white text-white font-medium group">
                   <div className="flex justify-center items-center w-14 h-14 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12">
                     <svg
                       width="30"
@@ -43,7 +45,7 @@ const ContainersDashboardStudent: FC = () => {
                     <p>Total Outlet</p>
                   </div>
                 </div>
-                <div className="bg-sky-500 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-white text-white font-medium group">
+                <div className="bg-sky-500 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-slate-100 dark:border-white text-white font-medium group">
                   <div className="flex justify-center items-center w-14 h-14 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12">
                     <svg
                       width="30"
@@ -66,7 +68,7 @@ const ContainersDashboardStudent: FC = () => {
                     <p>Total Member</p>
                   </div>
                 </div>
-                <div className="bg-sky-500 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-white text-white font-medium group">
+                <div className="bg-sky-500 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-slate-100 dark:border-white text-white font-medium group">
                   <div className="flex justify-center items-center w-14 h-14 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12">
                     <svg
                       width="30"
@@ -89,7 +91,7 @@ const ContainersDashboardStudent: FC = () => {
                     <p>Total Transaksi</p>
                   </div>
                 </div>
-                <div className="bg-sky-500 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-white text-white font-medium group">
+                <div className="bg-sky-500 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-slate-100 dark:border-white text-white font-medium group">
                   <div className="flex justify-center items-center w-14 h-14 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12">
                     <svg
                       width="30"
