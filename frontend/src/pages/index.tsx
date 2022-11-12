@@ -29,12 +29,12 @@ const Home: FC = () => {
       <Navbar />
 
       <main className="bg-white dark:bg-gray-900">
-        <div className="py-20">
+        <div className="py-36">
           <div className="max-w-xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
             <div className="container bg-slate-100 dark:bg-white rounded p-5">
               <div className="text-center py-5">
                 <h1 className="font-bold text-xl text-black">
-                  Silahkan Pilih Menu
+                  Silahkan Pilih Menu Login
                 </h1>
               </div>
               <div className="flex flex-row justify-center items-center py-5">

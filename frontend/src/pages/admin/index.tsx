@@ -31,20 +31,16 @@ const LoginAdmin: FC = () => {
     axios
       .post('/petugas/admin', sendData)
       .then((res) => {
-        setLoggedSuccess(res.data.logged);
-        setLoggedFailed(!res.data.logged);
+        setLoggedSuccess(true);
+        setLoggedFailed(false);
 
-        if (loggedSuccess) {
-          const admin = res.data.data;
-          const token = res.data.token;
-          localStorage.setItem('admin', JSON.stringify(admin));
-          localStorage.setItem('token', token);
-          setTimeout(() => router.push('/admin/dashboard'), 1000);
-        }
+        const admin = res.data.data;
+        const token = res.data.token;
+        localStorage.setItem('admin', JSON.stringify(admin));
+        localStorage.setItem('token', token);
+        router.push('/admin/dashboard');
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => console.log(err));
   };
 
   return (
