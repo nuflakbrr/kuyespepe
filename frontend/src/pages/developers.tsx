@@ -29,6 +29,7 @@ const Developers: FC = () => {
                     className="mx-auto max-w-full"
                     width={300}
                     height={300}
+                    loading="lazy"
                   />
                 </div>
               </div>
@@ -80,6 +81,7 @@ const Developers: FC = () => {
                   className="mx-auto max-w-full rounded-xl object-cover object-center"
                   width={500}
                   height={300}
+                  loading="lazy"
                 />
               </div>
               <div className="w-full px-4 lg:w-1/2">
