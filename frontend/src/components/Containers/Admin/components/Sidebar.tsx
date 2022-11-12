@@ -43,23 +43,23 @@ const SidebarAdmin: FC = () => {
       icon: <FaHome className="mr-2 text-lg" />,
     },
     {
-      path: '/admin/outlet',
-      name: 'Outlet',
+      path: '/admin/class',
+      name: 'Kelas',
       icon: <FaBuilding className="mr-2 text-lg" />,
     },
     {
-      path: '/admin/package',
-      name: 'Produk',
+      path: '/admin/spp',
+      name: 'SPP',
       icon: <FaBox className="mr-2 text-lg" />,
     },
     {
-      path: '/admin/member',
-      name: 'Pelanggan',
+      path: '/admin/student',
+      name: 'Siswa',
       icon: <FaUserAlt className="mr-2 text-lg" />,
     },
     {
-      path: '/admin/transaction/add',
-      name: 'Transaksi',
+      path: '/admin/payment',
+      name: 'Pembayaran',
       icon: <FaShoppingCart className="mr-2 text-lg" />,
     },
   ];
