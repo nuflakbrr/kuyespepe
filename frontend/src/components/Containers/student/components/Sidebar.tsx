@@ -95,6 +95,7 @@ const SidebarStudent: FC = () => {
   // logout function
   const logout = () => {
     localStorage.removeItem('student');
+    localStorage.removeItem('token');
     router.push('/');
   };
 

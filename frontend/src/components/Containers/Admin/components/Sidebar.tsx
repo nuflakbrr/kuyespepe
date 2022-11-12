@@ -95,6 +95,7 @@ const SidebarAdmin: FC = () => {
   // logout function
   const logout = () => {
     localStorage.removeItem('admin');
+    localStorage.removeItem('token');
     router.push('/');
   };
 

@@ -95,6 +95,7 @@ const SidebarOfficer: FC = () => {
   // logout function
   const logout = () => {
     localStorage.removeItem('officer');
+    localStorage.removeItem('token');
     router.push('/');
   };
 
