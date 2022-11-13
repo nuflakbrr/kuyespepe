@@ -21,9 +21,13 @@ const ContainersSppEdit: FC = () => {
   const { id } = router.query;
 
   useEffect(() => {
+    const headerConf = {
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+    };
+
     const getData = async () => {
       await axios
-        .get(`/spp/${id}`)
+        .get(`/spp/${id}`, headerConf)
         .then((res) => {
           setOldYear(res.data.data.tahun);
           setOldNominal(res.data.data.nominal);
@@ -101,7 +105,7 @@ const ContainersSppEdit: FC = () => {
                     id="old"
                     name="old"
                     type="text"
-                    placeholder="Nama Kelas Old"
+                    placeholder="Tahun"
                     value={oldYear}
                     disabled
                   />
@@ -118,7 +122,7 @@ const ContainersSppEdit: FC = () => {
                     id="old"
                     name="old"
                     type="text"
-                    placeholder="Kompetensi Keahlian"
+                    placeholder="Nominal"
                     value={oldNominal}
                     required
                     disabled
