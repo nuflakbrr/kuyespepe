@@ -101,7 +101,6 @@ const ContainersClassAdd: FC = () => {
                     name="kompetensi_keahlian"
                     type="text"
                     placeholder="Kompetensi Keahlian"
-                    autoComplete="false"
                     value={kompetensi_keahlian}
                     onChange={(e) => bindingState(e)}
                     required
