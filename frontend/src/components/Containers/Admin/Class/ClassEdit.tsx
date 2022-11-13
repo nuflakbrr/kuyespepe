@@ -166,7 +166,7 @@ const ContainersClassEdit: FC = () => {
                     className="bg-sky-500 hover:bg-sky-600 w-full text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                     type="submit"
                   >
-                    Ubbah Data
+                    Ubah Data
                   </button>
                 </div>
               </form>

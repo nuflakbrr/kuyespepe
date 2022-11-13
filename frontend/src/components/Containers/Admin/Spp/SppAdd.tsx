@@ -43,7 +43,7 @@ const ContainersSppAdd: FC = () => {
   return (
     <>
       <Head>
-        <title>Tambah Kelas | KuyEspepe</title>
+        <title>Tambah Spp | KuyEspepe</title>
       </Head>
 
       <SidebarAdmin />

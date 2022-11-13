@@ -62,7 +62,7 @@ const ContainersSppEdit: FC = () => {
   return (
     <>
       <Head>
-        <title>Edit Kelas | KuyEspepe</title>
+        <title>Edit Spp | KuyEspepe</title>
       </Head>
 
       <SidebarAdmin />
