@@ -56,17 +56,17 @@ const ContainersPaymentDetails: FC = () => {
 
       <SidebarAdmin />
 
-      <main className="md:ml-64 py-12 px-4 sm:px-6 lg:px-8">
-        <div className="container bg-slate-100 dark:bg-white rounded-lg p-5">
-          <div className="flex items-center justify-between">
-            {!data.length ? (
-              <p className="text-black text-center mx-auto">Memuat Data📦...</p>
-            ) : (
-              data.map((item: any) => (
-                <div
-                  className="w-full flex items-center justify-between"
-                  key={item.id_pembayaran}
-                >
+      <main className="bg-white dark:bg-slate-900 md:ml-64 py-12 px-4 sm:px-6 lg:px-8 min-h-screen">
+        {!data.length ? (
+          <p className="text-black text-center mx-auto">Memuat Data📦...</p>
+        ) : (
+          data.map((item: any) => (
+            <div
+              className="container bg-slate-100 dark:bg-white rounded-lg p-5 mb-5"
+              key={item.id_pembayaran}
+            >
+              <div className="flex items-center justify-between">
+                <div className="w-full flex items-center justify-between">
                   <section>
                     <div className="text-left">
                       <h1 className="font-bold text-sm text-slate-500">NISN</h1>
@@ -199,29 +199,19 @@ const ContainersPaymentDetails: FC = () => {
                       </h1>
                     </div>
                   </section>
-
-                  <section className="hidden md:block">
-                    <Link
-                      href="/admin/dashboard"
-                      className="flex items-center justify-center bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer"
-                    >
-                      <FaArrowLeft className="mr-2" /> Kembali
-                    </Link>
-                  </section>
                 </div>
-              ))
-            )}
-          </div>
-
-          <section className="block md:hidden">
-            <Link
-              href="/admin/dashboard"
-              className="flex items-center justify-center bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer"
-            >
-              <FaArrowLeft className="mr-2" /> Kembali
-            </Link>
-          </section>
-        </div>
+              </div>
+            </div>
+          ))
+        )}
+        <section className="md:max-w-xs">
+          <Link
+            href="/admin/dashboard"
+            className="flex items-center justify-center bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer"
+          >
+            <FaArrowLeft className="mr-2" /> Kembali
+          </Link>
+        </section>
       </main>
     </>
   );
