@@ -73,9 +73,7 @@ const SidebarAdmin: FC = () => {
         .get('/petugas', {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
         })
-        .then(() => {
-          setAdminName(admin.nama_petugas);
-        })
+        .then(() => setAdminName(admin.nama_petugas))
         .catch((err) => console.log(err));
     };
 
