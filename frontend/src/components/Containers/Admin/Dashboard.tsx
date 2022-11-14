@@ -1,11 +1,71 @@
-import { FC } from 'react';
+import { FC, useState, useEffect, createRef } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
+import { FaCartPlus, FaFileDownload } from 'react-icons/fa';
+import Pdf from 'react-to-pdf';
 
 import SidebarAdmin from './components/Sidebar';
-import { FaCartPlus } from 'react-icons/fa';
+import PaymentItemAdmin from './components/PaymentItem';
+import axios from '../../../config/axios';
 
 const ContainersDashboardAdmin: FC = () => {
+  const ref = createRef();
+
+  const option = { orientation: 'landscape' };
+
+  // Required state
+  const [dataSpp, setDataSpp] = useState([]);
+  const [dataStudent, setDataStudent] = useState([]);
+  const [dataPayment, setDataPayment] = useState([]);
+  const [dataAdmin, setDataAdmin] = useState([]);
+
+  useEffect(() => {
+    const headerConf = {
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+    };
+
+    // Get SPP Data Length
+    const getSppData = async () => {
+      await axios
+        .get('/spp', headerConf)
+        .then((res) => setDataSpp(res.data.data))
+        .catch((err) => console.log(err));
+    };
+
+    // Get Student Data Length
+    const getStudentData = async () => {
+      await axios
+        .get('/siswa', headerConf)
+        .then((res) => setDataStudent(res.data.data))
+        .catch((err) => console.log(err));
+    };
+
+    // Get Payment Data Length
+    const getPaymentData = async () => {
+      await axios
+        .get('/pembayaran', headerConf)
+        .then((res) => {
+          setDataPayment(res.data.data);
+        })
+        .catch((err) => console.log(err));
+    };
+
+    // Get Admin Data Length
+    const getAdminData = async () => {
+      await axios
+        .get('/petugas', headerConf)
+        .then((res) => setDataAdmin(res.data.data))
+        .catch((err) => console.log(err));
+    };
+
+    Promise.all([
+      getSppData(),
+      getStudentData(),
+      getPaymentData(),
+      getAdminData(),
+    ]);
+  }, []);
+
   return (
     <>
       <Head>
@@ -41,8 +101,8 @@ const ContainersDashboardAdmin: FC = () => {
                     </svg>
                   </div>
                   <div className="text-right">
-                    {/* <p className='text-2xl'>{dataOutlet.length}</p> */}
-                    <p>Total Outlet</p>
+                    <p className="text-2xl">{dataSpp.length}</p>
+                    <p>Total SPP</p>
                   </div>
                 </div>
                 <div className="bg-sky-500 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-slate-100 dark:border-white text-white font-medium group">
@@ -64,8 +124,8 @@ const ContainersDashboardAdmin: FC = () => {
                     </svg>
                   </div>
                   <div className="text-right">
-                    {/* <p className='text-2xl'>{dataMember.length}</p> */}
-                    <p>Total Member</p>
+                    <p className="text-2xl">{dataStudent.length}</p>
+                    <p>Total Siswa</p>
                   </div>
                 </div>
                 <div className="bg-sky-500 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-slate-100 dark:border-white text-white font-medium group">
@@ -87,8 +147,8 @@ const ContainersDashboardAdmin: FC = () => {
                     </svg>
                   </div>
                   <div className="text-right">
-                    {/* <p className='text-2xl'>{dataTransaction.length}</p> */}
-                    <p>Total Transaksi</p>
+                    <p className="text-2xl">{dataPayment.length}</p>
+                    <p>Total Pembayaran</p>
                   </div>
                 </div>
                 <div className="bg-sky-500 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-slate-100 dark:border-white text-white font-medium group">
@@ -110,7 +170,7 @@ const ContainersDashboardAdmin: FC = () => {
                     </svg>
                   </div>
                   <div className="text-right">
-                    {/* <p className='text-2xl'>{dataUser.length}</p> */}
+                    <p className="text-2xl">{dataAdmin.length}</p>
                     <p>Total Petugas</p>
                   </div>
                 </div>
@@ -121,147 +181,51 @@ const ContainersDashboardAdmin: FC = () => {
               <div className="flex items-center justify-between pb-6">
                 <div>
                   <h2 className="text-black dark:text-white text-2xl font-semibold">
-                    Daftar Transaksi
+                    Daftar Pembayaran
                   </h2>
                 </div>
                 <div className="flex flex-wrap items-center justify-between">
                   <div className="lg:ml-40 ml-10 space-x-8">
                     <Link
-                      href="/admin/transaction/add"
+                      href="/admin/payment/add"
                       className="flex items-center justify-center bg-sky-500 hover:bg-sky-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer"
                     >
-                      <FaCartPlus className="mr-2" /> Tambah Transaksi
+                      <FaCartPlus className="mr-2" /> Tambah Pembayaran
                     </Link>
+                  </div>
+                  <div className="lg:ml-2 ml-10 space-x-8">
+                    <Pdf targetRef={ref} filename="Report.pdf" option={option}>
+                      {({ toPdf }: any) => (
+                        <button
+                          className="w-full flex items-center justify-center bg-green-500 hover:bg-green-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer mt-2 lg:mt-0"
+                          onClick={toPdf}
+                        >
+                          <FaFileDownload className="mr-2" /> Unduh Laporan
+                        </button>
+                      )}
+                    </Pdf>
                   </div>
                 </div>
               </div>
               <div>
                 <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
                   <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">
-                    {/* {!dataUser.length || !dataMember.length || !dataOutlet.length || !dataTransaction.length ? (
-                      <p className='text-white text-center mx-auto'>Memuat Data📦...</p>
+                    {!dataPayment.length ? (
+                      <p className="text-black dark:text-white text-center mx-auto">
+                        Memuat Data📦...
+                      </p>
                     ) : (
-                      <table className='min-w-full leading-normal'>
-                        <thead>
-                          <tr>
-                            <th
-                              className='px-5 py-3 border-b-2 border-gray-200 bg-sky-500 text-left text-xs font-semibold text-white uppercase tracking-wider'>
-                              No
-                            </th>
-                            <th
-                              className='px-5 py-3 border-b-2 border-gray-200 bg-sky-500 text-left text-xs font-semibold text-white uppercase tracking-wider'>
-                              Nama Member
-                            </th>
-                            <th
-                              className='px-5 py-3 border-b-2 border-gray-200 bg-sky-500 text-left text-xs font-semibold text-white uppercase tracking-wider'>
-                              Tanggal
-                            </th>
-                            <th
-                              className='px-5 py-3 border-b-2 border-gray-200 bg-sky-500 text-left text-xs font-semibold text-white uppercase tracking-wider'>
-                              Tanggal Selesai
-                            </th>
-                            <th
-                              className='px-5 py-3 border-b-2 border-gray-200 bg-sky-500 text-left text-xs font-semibold text-white uppercase tracking-wider'>
-                              Tanggal Bayar
-                            </th>
-                            <th
-                              className='px-5 py-3 border-b-2 border-gray-200 bg-sky-500 text-left text-xs font-semibold text-white uppercase tracking-wider'>
-                              Status Pembayaran
-                            </th>
-                            <th
-                              className='px-5 py-3 border-b-2 border-gray-200 bg-sky-500 text-left text-xs font-semibold text-white uppercase tracking-wider'>
-                              Status Pengerjaan
-                            </th>
-                            <th
-                              className='px-5 py-3 border-b-2 border-gray-200 bg-sky-500 text-left text-xs font-semibold text-white uppercase tracking-wider'>
-                              Nama Petugas
-                            </th>
-                            <th
-                              className='px-5 py-3 border-b-2 border-gray-200 bg-sky-500 text-left text-xs font-semibold text-white uppercase tracking-wider'>
-                              Aksi
-                            </th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {dataTransaction.map((val, index) => {
-                            return (
-                              <tr key={index}>
-                                <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-                                  <div className='flex items-center'>
-                                    <p className='text-gray-900 whitespace-no-wrap'>
-                                      {index + 1}
-                                    </p>
-                                  </div>
-                                </td>
-                                <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-                                  <div className='flex items-center'>
-                                    <div className='flex-shrink-0 w-10 h-10'>
-                                      <img className='w-full h-full rounded-full'
-                                        src='https://therminic2018.eu/wp-content/uploads/2018/07/dummy-avatar.jpg'
-                                        alt='Member Profile Picture' />
-                                    </div>
-                                    <div className='ml-3'>
-                                      <p className='text-gray-900 whitespace-no-wrap'>
-                                        {formatMemberName(val.memberId)}
-                                      </p>
-                                    </div>
-                                  </div>
-                                </td>
-                                <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-                                  <div className='flex items-center'>
-                                    <p className='text-gray-900 whitespace-no-wrap'>
-                                      {formatDate(val.date)}
-                                    </p>
-                                  </div>
-                                </td>
-                                <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-                                  <div className='flex items-center'>
-                                    <p className='text-gray-900 whitespace-no-wrap'>
-                                      {formatDate(val.deadline)}
-                                    </p>
-                                  </div>
-                                </td>
-                                <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-                                  <div className='flex items-center'>
-                                    <p className='text-gray-900 whitespace-no-wrap'>
-                                      {formatDate(val.datePayment)}
-                                    </p>
-                                  </div>
-                                </td>
-                                <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-                                  <div className='flex items-center'>
-                                    {getStatusPayment(val.statusPayment)}
-                                  </div>
-                                </td>
-                                <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-                                  <div className='flex items-center'>
-                                    {getStatusTransaction(val.status)}
-                                  </div>
-                                </td>
-                                <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-                                  <div className='flex items-center'>
-                                    <div className='flex-shrink-0 w-10 h-10'>
-                                      <img className='w-full h-full rounded-full'
-                                        src='https://therminic2018.eu/wp-content/uploads/2018/07/dummy-avatar.jpg'
-                                        alt='Admin Profile Picture' />
-                                    </div>
-                                    <div className='ml-3'>
-                                      <p className='text-gray-900 whitespace-no-wrap'>
-                                        {formatUserName(val.adminId)}
-                                      </p>
-                                    </div>
-                                  </div>
-                                </td>
-                                <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-                                  <Link to={`/admin/transaction/edit/${val._id}`} className='flex items-center justify-center bg-yellow-500 hover:bg-yellow-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer'><FaEdit className='mr-2' /> Ubah</Link>
-                                </td>
-                              </tr>
-                            )
-                            );
-                          })}
-                        </tbody>
-                      </table>
-                    )} */}
+                      dataPayment.map((item: any) => (
+                        <PaymentItemAdmin
+                          studentName={item.siswa.nama}
+                          nisn={item.nisn}
+                          totalPayment={item.jumlah_bayar}
+                          datePayment={item.tgl_bayar}
+                          id={item.nisn}
+                          key={item.id_pembayaran}
+                        />
+                      ))
+                    )}
                   </div>
                 </div>
               </div>
@@ -269,6 +233,8 @@ const ContainersDashboardAdmin: FC = () => {
           </div>
         </div>
       </section>
+
+      <section ref={ref as React.RefObject<HTMLDivElement>}></section>
     </>
   );
 };
