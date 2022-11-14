@@ -48,7 +48,8 @@ app.post('/', async (req, res) => {
     let data = {
         id_petugas: req.body.id_petugas,
         nisn: req.body.nisn,
-        tgl_bayar: moment().format('YYYY-MM-DD'),
+        tgl_bayar: req.body.tgl_bayar,
+        // tgl_bayar: moment().format('YYYY-MM-DD'),
         bulan_dibayar: req.body.bulan_dibayar,
         tahun_dibayar: req.body.tahun_dibayar,
         id_spp: req.body.id_spp,
