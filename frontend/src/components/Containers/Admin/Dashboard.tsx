@@ -11,7 +11,7 @@ import axios from '../../../config/axios';
 const ContainersDashboardAdmin: FC = () => {
   const ref = createRef();
 
-  const option = { orientation: 'landscape' };
+  const options = { orientation: 'landscape', unit: 'in', format: [8.8, 8.8] };
 
   // Required state
   const [dataSpp, setDataSpp] = useState([]);
@@ -65,6 +65,22 @@ const ContainersDashboardAdmin: FC = () => {
       getAdminData(),
     ]);
   }, []);
+
+  // Format currency to IDR
+  const formatCurrency = (num: string) => {
+    return new Intl.NumberFormat('id-ID', {
+      style: 'currency',
+      currency: 'IDR',
+    }).format(Number(num));
+  };
+
+  // Format Date Time
+  const formatTime = (time: any) => {
+    const date = new Date(time);
+    return `${date.getDate()}/${
+      Number(date.getMonth()) + 1
+    }/${date.getFullYear()}`;
+  };
 
   return (
     <>
@@ -194,7 +210,11 @@ const ContainersDashboardAdmin: FC = () => {
                     </Link>
                   </div>
                   <div className="lg:ml-2 ml-10 space-x-8">
-                    <Pdf targetRef={ref} filename="Report.pdf" option={option}>
+                    <Pdf
+                      targetRef={ref}
+                      filename="Report.pdf"
+                      options={options}
+                    >
                       {({ toPdf }: any) => (
                         <button
                           className="w-full flex items-center justify-center bg-green-500 hover:bg-green-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer mt-2 lg:mt-0"
@@ -234,7 +254,83 @@ const ContainersDashboardAdmin: FC = () => {
         </div>
       </section>
 
-      <section ref={ref as React.RefObject<HTMLDivElement>}></section>
+      <section
+        className="absolute top-1 -z-10"
+        ref={ref as React.RefObject<HTMLDivElement>}
+      >
+        <table className="min-w-full leading-normal">
+          <thead>
+            <tr>
+              <th className="px-5 py-3 border-b-2 border-gray-200 bg-sky-500 text-left text-xs font-semibold text-white uppercase tracking-wider">
+                NISN
+              </th>
+              <th className="px-5 py-3 border-b-2 border-gray-200 bg-sky-500 text-left text-xs font-semibold text-white uppercase tracking-wider">
+                Nama Siswa
+              </th>
+              <th className="px-5 py-3 border-b-2 border-gray-200 bg-sky-500 text-left text-xs font-semibold text-white uppercase tracking-wider">
+                Tanggal Bayar
+              </th>
+              <th className="px-5 py-3 border-b-2 border-gray-200 bg-sky-500 text-left text-xs font-semibold text-white uppercase tracking-wider">
+                Bulan Dibayar
+              </th>
+              <th className="px-5 py-3 border-b-2 border-gray-200 bg-sky-500 text-left text-xs font-semibold text-white uppercase tracking-wider">
+                Tahun Dibayar
+              </th>
+              <th className="px-5 py-3 border-b-2 border-gray-200 bg-sky-500 text-left text-xs font-semibold text-white uppercase tracking-wider">
+                Jumlah Bayar
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {dataPayment.map((item: any, index) => (
+              <tr key={index}>
+                <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                  <div className="flex items-center">
+                    <p className="text-gray-900 whitespace-no-wrap">
+                      {item.nisn}
+                    </p>
+                  </div>
+                </td>
+                <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                  <div className="flex items-center">
+                    <p className="text-gray-900 whitespace-no-wrap">
+                      {item.siswa.nama}
+                    </p>
+                  </div>
+                </td>
+                <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                  <div className="flex items-center">
+                    <p className="text-gray-900 whitespace-no-wrap">
+                      {formatTime(item.tgl_bayar)}
+                    </p>
+                  </div>
+                </td>
+                <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                  <div className="flex items-center">
+                    <p className="text-gray-900 whitespace-no-wrap">
+                      {item.bulan_dibayar}
+                    </p>
+                  </div>
+                </td>
+                <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                  <div className="flex items-center">
+                    <p className="text-gray-900 whitespace-no-wrap">
+                      {item.tahun_dibayar}
+                    </p>
+                  </div>
+                </td>
+                <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                  <div className="flex items-center">
+                    <p className="text-gray-900 whitespace-no-wrap">
+                      {formatCurrency(item.jumlah_bayar)}
+                    </p>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </section>
     </>
   );
 };
