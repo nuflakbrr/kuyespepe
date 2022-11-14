@@ -68,7 +68,7 @@ const ContainersClassEdit: FC = () => {
       <SidebarAdmin />
 
       <main className="bg-white dark:bg-gray-900">
-        <div className="py-32">
+        <div className="md:ml-64 py-32">
           <div className="max-w-xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
             <div className="container bg-slate-100 dark:bg-white rounded p-5">
               <div className="text-center">
