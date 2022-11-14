@@ -31,16 +31,14 @@ const LoginOfficer: FC = () => {
     axios
       .post('/petugas/petugas', sendData)
       .then((res) => {
-        setLoggedSuccess(res.data.logged);
-        setLoggedFailed(!res.data.logged);
+        setLoggedSuccess(true);
+        setLoggedFailed(false);
 
-        if (loggedSuccess) {
-          const admin = res.data.data;
-          const token = res.data.token;
-          localStorage.setItem('officer', JSON.stringify(admin));
-          localStorage.setItem('token', token);
-          setTimeout(() => router.push('/officer/dashboard'), 1000);
-        }
+        const admin = res.data.data;
+        const token = res.data.token;
+        localStorage.setItem('officer', JSON.stringify(admin));
+        localStorage.setItem('token', token);
+        router.push('/officer/dashboard');
       })
       .catch((err) => console.log(err));
   };

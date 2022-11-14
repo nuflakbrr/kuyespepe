@@ -3,14 +3,7 @@ import { FC, useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { AiOutlineClose } from 'react-icons/ai';
-import {
-  FaHome,
-  FaBuilding,
-  FaBox,
-  FaUserAlt,
-  FaShoppingCart,
-  FaSignOutAlt,
-} from 'react-icons/fa';
+import { FaHome, FaShoppingCart, FaSignOutAlt } from 'react-icons/fa';
 
 import axios from '../../../../config/axios';
 import ThemesSwitch from '../../../Mixins/ThemesSwitch';
@@ -43,23 +36,8 @@ const SidebarOfficer: FC = () => {
       icon: <FaHome className="mr-2 text-lg" />,
     },
     {
-      path: '/officer/outlet',
-      name: 'Outlet',
-      icon: <FaBuilding className="mr-2 text-lg" />,
-    },
-    {
-      path: '/officer/package',
-      name: 'Produk',
-      icon: <FaBox className="mr-2 text-lg" />,
-    },
-    {
-      path: '/officer/member',
-      name: 'Pelanggan',
-      icon: <FaUserAlt className="mr-2 text-lg" />,
-    },
-    {
-      path: '/officer/transaction/add',
-      name: 'Transaksi',
+      path: '/officer/payment/add',
+      name: 'Pembayaran',
       icon: <FaShoppingCart className="mr-2 text-lg" />,
     },
   ];
@@ -73,9 +51,7 @@ const SidebarOfficer: FC = () => {
         .get('/petugas', {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
         })
-        .then(() => {
-          setOfficerName(officer.nama_petugas);
-        })
+        .then(() => setOfficerName(officer.nama_petugas))
         .catch((err) => console.log(err));
     };
 
@@ -101,12 +77,18 @@ const SidebarOfficer: FC = () => {
 
   return (
     <>
-      <nav className="md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden bg-slate-100 dark:bg-slate-800 flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6">
+      <nav className="md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden bg-slate-100 dark:bg-slate-800 flex flex-wrap items-center justify-between relative md:w-64 z-20 py-4 px-6">
         <div className="md:flex-col md:items-stretch md:min-h-full md:flex-nowrap px-0 flex flex-wrap items-center justify-between w-full mx-auto">
           <Link href="/officer/dashboard" legacyBehavior>
-            <a className="md:block text-left md:pb-2 text-black dark:text-white mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0">
-              Halo, {officerName}
-            </a>
+            {!officerName ? (
+              <p className="md:block text-left md:pb-2 text-black dark:text-white mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0">
+                Memuat Data📦...
+              </p>
+            ) : (
+              <a className="md:block text-left md:pb-2 text-black dark:text-white mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0">
+                Halo, {officerName}
+              </a>
+            )}
           </Link>
 
           <button
@@ -189,14 +171,6 @@ const SidebarOfficer: FC = () => {
 
             <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
               <li className="items-center">
-                <Link href="/officer/user" legacyBehavior>
-                  <a className={activeClassses('/officer/user')}>
-                    <FaUserAlt className="mr-2 text-lg" />
-                    Petugas
-                  </a>
-                </Link>
-              </li>
-              <li className="items-center">
                 <button className={inActiveClass} onClick={logout}>
                   <FaSignOutAlt className="mr-2 text-lg" />
                   Keluar
@@ -210,7 +184,7 @@ const SidebarOfficer: FC = () => {
           </div>
         </div>
       </nav>
-      <div className="bg-slate-100 dark:bg-slate-800 hidden md:flex self-end justify-end items-center p-4 sticky top-0 cursor-default">
+      <div className="z-10 bg-slate-100 dark:bg-slate-800 hidden md:flex self-end justify-end items-center p-4 sticky top-0 cursor-default">
         <h1 className="text-black dark:text-white font-bold text-xl">
           <span className="text-sky-500">Kuy</span>Espepe
         </h1>
