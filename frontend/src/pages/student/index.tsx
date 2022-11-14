@@ -31,15 +31,18 @@ const LoginStudent: FC = () => {
     axios
       .post('/siswa/siswa', sendData)
       .then((res) => {
-        setLoggedSuccess(res.data.logged);
-        setLoggedFailed(!res.data.logged);
+        if (res.data.logged === true) {
+          setLoggedSuccess(true);
+          setLoggedFailed(false);
 
-        if (loggedSuccess) {
-          const admin = res.data.data;
+          const student = res.data.data;
           const token = res.data.token;
-          localStorage.setItem('student', JSON.stringify(admin));
+          localStorage.setItem('student', JSON.stringify(student));
           localStorage.setItem('token', token);
-          setTimeout(() => router.push('/student/dashboard'), 1000);
+          router.push('/student/dashboard');
+        } else {
+          setLoggedSuccess(false);
+          setLoggedFailed(true);
         }
       })
       .catch((err) => console.log(err));
