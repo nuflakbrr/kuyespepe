@@ -7,10 +7,12 @@
 - [x] CRUD Siswa
 - [X] CRUD Pembayaran
 - [x] CRUD Admin
+- [x] Unduh Laporan
 
 ### PETUGAS
 
-- [ ] xxxxxx
+- [x] CRUD Pembayaran
+- [x] Unduh Laporan
 
 ### SISWA
 
