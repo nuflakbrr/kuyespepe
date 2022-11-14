@@ -212,7 +212,7 @@ const ContainersDashboardAdmin: FC = () => {
                   <div className="lg:ml-2 ml-10 space-x-8">
                     <Pdf
                       targetRef={ref}
-                      filename="Report.pdf"
+                      filename="Report-Admin.pdf"
                       options={options}
                     >
                       {({ toPdf }: any) => (
