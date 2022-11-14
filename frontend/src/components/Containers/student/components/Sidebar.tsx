@@ -3,14 +3,7 @@ import { FC, useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { AiOutlineClose } from 'react-icons/ai';
-import {
-  FaHome,
-  FaBuilding,
-  FaBox,
-  FaUserAlt,
-  FaShoppingCart,
-  FaSignOutAlt,
-} from 'react-icons/fa';
+import { FaHome, FaSignOutAlt } from 'react-icons/fa';
 
 import axios from '../../../../config/axios';
 import ThemesSwitch from '../../../Mixins/ThemesSwitch';
@@ -41,26 +34,6 @@ const SidebarStudent: FC = () => {
       path: '/student/dashboard',
       name: 'Dashboard Siswa',
       icon: <FaHome className="mr-2 text-lg" />,
-    },
-    {
-      path: '/student/outlet',
-      name: 'Outlet',
-      icon: <FaBuilding className="mr-2 text-lg" />,
-    },
-    {
-      path: '/student/package',
-      name: 'Produk',
-      icon: <FaBox className="mr-2 text-lg" />,
-    },
-    {
-      path: '/student/member',
-      name: 'Pelanggan',
-      icon: <FaUserAlt className="mr-2 text-lg" />,
-    },
-    {
-      path: '/student/transaction/add',
-      name: 'Transaksi',
-      icon: <FaShoppingCart className="mr-2 text-lg" />,
     },
   ];
 
@@ -188,14 +161,6 @@ const SidebarStudent: FC = () => {
             </h6>
 
             <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
-              <li className="items-center">
-                <Link href="/student/user" legacyBehavior>
-                  <a className={activeClassses('/student/user')}>
-                    <FaUserAlt className="mr-2 text-lg" />
-                    Petugas
-                  </a>
-                </Link>
-              </li>
               <li className="items-center">
                 <button className={inActiveClass} onClick={logout}>
                   <FaSignOutAlt className="mr-2 text-lg" />
