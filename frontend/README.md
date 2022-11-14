@@ -1,3 +1,21 @@
+## To Do List
+
+### ADMIN
+
+- [x] CRUD Kelas
+- [x] CRUD SPP
+- [x] CRUD Siswa
+- [X] CRUD Pembayaran
+- [ ] CRUD Admin
+
+### PETUGAS
+
+- [ ] xxxxxx
+
+### SISWA
+
+- [ ] xxxxxx
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
