@@ -112,7 +112,7 @@ const ContainersDashboardStudent: FC = () => {
               </div>
               <div>
                 <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
-                  <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">
+                  <div className="inline-block min-w-full rounded-lg overflow-hidden">
                     {!dataPayment.length ? (
                       <p className="text-black dark:text-white text-center mx-auto">
                         Memuat Data📦...
