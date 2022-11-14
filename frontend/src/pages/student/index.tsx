@@ -42,9 +42,7 @@ const LoginStudent: FC = () => {
           setTimeout(() => router.push('/student/dashboard'), 1000);
         }
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => console.log(err));
   };
 
   return (
