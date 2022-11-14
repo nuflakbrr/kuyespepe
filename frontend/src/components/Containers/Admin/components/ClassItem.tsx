@@ -54,7 +54,7 @@ const ClassItemAdmin: FC<ClassItemProps> = ({ nameClass, skill, id }) => {
         </section>
 
         <section className="hidden md:block">
-          <div className="text-left pt-5">
+          <div className="text-left">
             <h1 className="font-bold text-sm text-slate-500">
               Kopetensi Keahlian
             </h1>

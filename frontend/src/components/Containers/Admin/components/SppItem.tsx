@@ -59,7 +59,7 @@ const SppItemAdmin: FC<SppItemProps> = ({ id, year, nominal }) => {
         </section>
 
         <section>
-          <div className="hidden md:block text-left pt-5">
+          <div className="hidden md:block text-left">
             <h1 className="font-bold text-sm text-slate-500">Nominal</h1>
             <h1 className="font-bold text-lg text-black">
               {formatCurrency(nominal) || 'Tidak diketahui'}
