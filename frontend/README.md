@@ -6,7 +6,7 @@
 - [x] CRUD SPP
 - [x] CRUD Siswa
 - [X] CRUD Pembayaran
-- [ ] CRUD Admin
+- [x] CRUD Admin
 
 ### PETUGAS
 
