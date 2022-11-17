@@ -8,11 +8,13 @@ import axios from '../../../../config/axios';
 import SidebarAdmin from '../components/Sidebar';
 
 const ContainersStudentIndex: FC = () => {
+  // Define Router
   const router = useRouter();
 
   // Required State
   const [data, setData] = useState([]);
 
+  // Fetch Data from API
   useEffect(() => {
     const headerConf = {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
@@ -36,7 +38,7 @@ const ContainersStudentIndex: FC = () => {
   //   return nameClass?.nama_kelas || 'Tidak diketahui';
   // };
 
-  // Delete Student Item
+  // Handle DELETE Data
   const handleDelete = async (nisn: any) => {
     alert('Apakah anda yakin ingin menghapus data ini?');
 

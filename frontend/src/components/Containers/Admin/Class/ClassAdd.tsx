@@ -10,11 +10,12 @@ const ContainersClassAdd: FC = () => {
   const router = useRouter();
 
   // Required State
-  const [nama_kelas, setNameClass] = useState('');
-  const [kompetensi_keahlian, setSkill] = useState('');
+  const [nameClass, setNameClass] = useState('');
+  const [skill, setSkill] = useState('');
   const [storeSuccess, setStoreSuccess] = useState(false);
   const [storeFailed, setStoreFailed] = useState(false);
 
+  // Binding event target & value
   const bindingState = (e: any) => {
     const { name, value } = e.target;
     if (name === 'nama_kelas') {
@@ -24,10 +25,11 @@ const ContainersClassAdd: FC = () => {
     }
   };
 
+  // Handle POST Data
   const handleStore = async (e: any) => {
     e.preventDefault();
 
-    const sendData = { nama_kelas, kompetensi_keahlian };
+    const sendData = { nama_kelas: nameClass, kompetensi_keahlian: skill };
 
     axios
       .post('/kelas', sendData)
@@ -83,7 +85,7 @@ const ContainersClassAdd: FC = () => {
                     name="nama_kelas"
                     type="text"
                     placeholder="Nama Kelas"
-                    value={nama_kelas}
+                    value={nameClass}
                     onChange={(e) => bindingState(e)}
                     required
                   />
@@ -101,7 +103,7 @@ const ContainersClassAdd: FC = () => {
                     name="kompetensi_keahlian"
                     type="text"
                     placeholder="Kompetensi Keahlian"
-                    value={kompetensi_keahlian}
+                    value={skill}
                     onChange={(e) => bindingState(e)}
                     required
                   />

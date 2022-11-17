@@ -15,6 +15,7 @@ const ContainersSppAdd: FC = () => {
   const [storeSuccess, setStoreSuccess] = useState(false);
   const [storeFailed, setStoreFailed] = useState(false);
 
+  // Binding event target & value
   const bindingState = (e: any) => {
     const { name, value } = e.target;
     if (name === 'year') {
@@ -24,6 +25,7 @@ const ContainersSppAdd: FC = () => {
     }
   };
 
+  // Handle POST Data
   const handleStore = async (e: any) => {
     e.preventDefault();
 

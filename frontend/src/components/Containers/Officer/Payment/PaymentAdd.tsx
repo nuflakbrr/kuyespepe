@@ -23,6 +23,7 @@ const ContainersPaymentAdd: FC = () => {
   const [storeSuccess, setStoreSuccess] = useState(false);
   const [storeFailed, setStoreFailed] = useState(false);
 
+  // Fetch Data from API
   useEffect(() => {
     const headerConf = {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
@@ -60,6 +61,7 @@ const ContainersPaymentAdd: FC = () => {
     }).format(Number(num));
   };
 
+  // Binding event target & value
   const bindingState = (e: any) => {
     const { name, value } = e.target;
     if (name === 'nisn') {
@@ -79,6 +81,7 @@ const ContainersPaymentAdd: FC = () => {
     }
   };
 
+  // Handle POST Data
   const handleStore = async (e: any) => {
     e.preventDefault();
 

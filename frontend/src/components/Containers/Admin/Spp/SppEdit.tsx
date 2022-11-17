@@ -38,6 +38,7 @@ const ContainersSppEdit: FC = () => {
     Promise.all([getData()]);
   }, [id]);
 
+  // Binding event target & value
   const bindingState = (e: any) => {
     const { name, value } = e.target;
     if (name === 'year') {
@@ -47,6 +48,7 @@ const ContainersSppEdit: FC = () => {
     }
   };
 
+  // Handle PUT Data
   const handleStore = async (e: any) => {
     e.preventDefault();
 

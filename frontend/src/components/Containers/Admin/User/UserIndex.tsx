@@ -8,11 +8,13 @@ import axios from '../../../../config/axios';
 import SidebarAdmin from '../components/Sidebar';
 
 const ContainersAdminUserIndex: FC = () => {
+  // Define Router
   const router = useRouter();
 
   // Required State
   const [data, setData] = useState([]);
 
+  // Fetch Data from API
   useEffect(() => {
     const headerConf = {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
@@ -45,7 +47,7 @@ const ContainersAdminUserIndex: FC = () => {
     }
   };
 
-  // Delete Admin User Item
+  // Handle DELETE Data
   const handleDelete = async (id: any) => {
     alert('Apakah anda yakin ingin menghapus data ini?');
 

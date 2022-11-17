@@ -9,8 +9,10 @@ import PaymentItemAdmin from './components/PaymentItem';
 import axios from '../../../config/axios';
 
 const ContainersDashboardAdmin: FC = () => {
+  // Define ref for pdf
   const ref = createRef();
 
+  // Options for pdf
   const options = { orientation: 'landscape', unit: 'in', format: [8.8, 8.8] };
 
   // Required state
@@ -19,6 +21,7 @@ const ContainersDashboardAdmin: FC = () => {
   const [dataPayment, setDataPayment] = useState([]);
   const [dataAdmin, setDataAdmin] = useState([]);
 
+  // Fetch data from API
   useEffect(() => {
     const headerConf = {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },

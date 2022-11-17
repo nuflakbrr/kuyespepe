@@ -15,7 +15,7 @@ const ClassItemAdmin: FC<ClassItemProps> = ({ nameClass, skill, id }) => {
   // Define Router
   const router = useRouter();
 
-  // Delete Class Item
+  // Handle DELETE Data
   const handleDelete = async (e: any) => {
     e.preventDefault();
 

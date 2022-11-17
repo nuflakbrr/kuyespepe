@@ -43,6 +43,7 @@ const ContainersAdminUserEdit: FC = () => {
     Promise.all([getData()]);
   }, [headerConf, id]);
 
+  // Binding event target & value
   const bindingState = (e: any) => {
     const { name, value } = e.target;
     if (name === 'username') {
@@ -56,6 +57,7 @@ const ContainersAdminUserEdit: FC = () => {
     }
   };
 
+  // Handle PUT Data
   const handleStore = async (e: any) => {
     e.preventDefault();
 

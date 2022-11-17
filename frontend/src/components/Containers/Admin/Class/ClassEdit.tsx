@@ -12,8 +12,8 @@ const ContainersClassEdit: FC = () => {
   // Required State
   const [namedClass, setNamedClass] = useState([]);
   const [skills, setSkills] = useState([]);
-  const [nama_kelas, setNameClass] = useState('');
-  const [kompetensi_keahlian, setSkill] = useState('');
+  const [nameClass, setNameClass] = useState('');
+  const [skill, setSkill] = useState('');
   const [storeSuccess, setStoreSuccess] = useState(false);
   const [storeFailed, setStoreFailed] = useState(false);
 
@@ -34,6 +34,7 @@ const ContainersClassEdit: FC = () => {
     Promise.all([getData()]);
   }, [id]);
 
+  // Binding event target & value
   const bindingState = (e: any) => {
     const { name, value } = e.target;
     if (name === 'nama_kelas') {
@@ -43,10 +44,15 @@ const ContainersClassEdit: FC = () => {
     }
   };
 
+  // Handle PUT Data
   const handleStore = async (e: any) => {
     e.preventDefault();
 
-    const sendData = { id_kelas: id, nama_kelas, kompetensi_keahlian };
+    const sendData = {
+      id_kelas: id,
+      nama_kelas: nameClass,
+      kompetensi_keahlian: skill,
+    };
 
     axios
       .put('/kelas', sendData)
@@ -137,7 +143,7 @@ const ContainersClassEdit: FC = () => {
                     name="nama_kelas"
                     type="text"
                     placeholder="Nama Kelas"
-                    value={nama_kelas}
+                    value={nameClass}
                     onChange={(e) => bindingState(e)}
                     required
                   />
@@ -156,7 +162,7 @@ const ContainersClassEdit: FC = () => {
                     name="kompetensi_keahlian"
                     type="text"
                     placeholder="Kompetensi Keahlian"
-                    value={kompetensi_keahlian}
+                    value={skill}
                     onChange={(e) => bindingState(e)}
                     required
                   />

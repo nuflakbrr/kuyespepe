@@ -2,6 +2,7 @@ import { FC } from 'react';
 import Link from 'next/link';
 
 const Footer: FC = () => {
+  // Get Full Year
   const year = new Date().getFullYear();
 
   const navLink = [

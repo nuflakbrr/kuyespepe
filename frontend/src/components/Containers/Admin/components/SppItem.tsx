@@ -12,9 +12,10 @@ type SppItemProps = {
 };
 
 const SppItemAdmin: FC<SppItemProps> = ({ id, year, nominal }) => {
+  // Define Router
   const router = useRouter();
 
-  // Delete Spp Item
+  // Handle DELETE Data
   const handleDelete = async (e: any) => {
     e.preventDefault();
 

@@ -17,6 +17,7 @@ const ContainersAdminUserAdd: FC = () => {
   const [storeSuccess, setStoreSuccess] = useState(false);
   const [storeFailed, setStoreFailed] = useState(false);
 
+  // Binding event target & value
   const bindingState = (e: any) => {
     const { name, value } = e.target;
     if (name === 'username') {
@@ -30,6 +31,7 @@ const ContainersAdminUserAdd: FC = () => {
     }
   };
 
+  // Handle POST Data
   const handleStore = async (e: any) => {
     e.preventDefault();
 

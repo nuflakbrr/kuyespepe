@@ -38,6 +38,7 @@ const ContainersStudentEdit: FC = () => {
     headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
   };
 
+  // Fetch Data from API
   useEffect(() => {
     const getData = async () => {
       await axios
@@ -79,6 +80,7 @@ const ContainersStudentEdit: FC = () => {
     }).format(Number(num));
   };
 
+  // Binding event target & value
   const bindingState = (e: any) => {
     const { name, value } = e.target;
     if (name === 'nisn') {
@@ -100,6 +102,7 @@ const ContainersStudentEdit: FC = () => {
     }
   };
 
+  // Handle PUT Data
   const handleStore = async (e: any) => {
     e.preventDefault();
 
