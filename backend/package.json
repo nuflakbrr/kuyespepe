@@ -10,10 +10,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "-"
+    "url": "https://github.com/nuflakbrr/kuyespepe/tree/master/backend"
   },
   "keywords": [
-    "-"
+    "Educational Development Contribution Backend App",
+    "UKL Framework",
+    "SMK Telkom Malang"
   ],
   "author": "Naufal Akbar Nugroho",
   "license": "MIT",
